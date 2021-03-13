@@ -1,25 +1,26 @@
 import React from 'react';
+// import './ReviewItem.css';
 
 const ReviewItem = (props) => {
     const {name, quantity, img, key, price} = props.product;
     // console.log(props);
     const ReviewItemStyle = {
-        padding: '10px',
-        margin: '10px',
-        marginLeft: '200px',
-        border:'1px solid black',
-        width: '1100px',
-        height: '400px'
-
+        marginBottom: '10px',
+        paddingBottom: '5px',
+        marginLeft: '100px',
+        // margin: '10px',
+        // padding: '10px'
     }
     return (
-        <div style={ReviewItemStyle} >
+        <div style={ReviewItemStyle}>
             <img src={img} alt=""/>
-            <h4> {name} </h4>
-            <p>Quantity: {quantity}</p>
-            <p><small>${price}</small></p>
-            <br/>
-            <button onClick={() => props.removeProduct(key)} className="main-button">Remove</button>
+            <div >
+                <h4 style={{ width: '350px', height: '100px' }}> {name} </h4>
+                <p>Quantity: {quantity}</p>
+                <p><small>${price}</small></p>
+                <br />
+                <button onClick={() => props.removeProduct(key)} className="main-button">Remove</button>
+            </div>
         </div>
     );
 };
