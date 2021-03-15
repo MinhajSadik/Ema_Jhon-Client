@@ -6,7 +6,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route
-} from "react-router-dom";//
+} from "react-router-dom";
 import Review from './Componenet/Review/Review';
 import Inventory from './Componenet/Inventory/Inventory';
 import NotFound from './Componenet/NotFound/NotFound';
