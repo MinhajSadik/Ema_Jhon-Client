@@ -44,6 +44,7 @@ const Shop = () => {
 
     return (
         <div className="twin-container">
+            
             <div className="product-container">
                 {
                     products.map(pro =><Product 
