@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { UserContext } from "../../App";
 import { useHistory, useLocation } from "react-router";
-import { handleGoogleSignIn, handleFbSignIn, handleSignOut, initializeLoginFramwork } from './LoginManager';
+import { handleGoogleSignIn, handleFbSignIn, handleSignOut, initializeLoginFramwork, createUserWithEmailAndPassword, signInWithEmailAndPassword } from './LoginManager';
 
 // if (!firebase.apps.length) {
     // firebase.initializeApp(firebaseConfig)
@@ -28,28 +28,29 @@ const Login = () => {
     const googleSignIn = () => {
         handleGoogleSignIn()
             .then(res => {
-                setUser(res);
-                setLoggedInUser(res);
-            history.replace(from);
+                handleResponse(res, true);
         })
     }
     const fbSignIn = () => {
         handleFbSignIn()
             .then(res => {
-                setUser(res);
-                setLoggedInUser(res);
-                history.replace(from);
+                handleResponse(res, true);
         })
     }
     const signOut = () => {
         handleSignOut()
             .then(res => {
-                setUser(res);
-                setLoggedInUser(res);
-                history.replace(from);
+                handleResponse(res, false);
         })
     }
     
+    const handleResponse = (res, redicrect) => {
+        setUser(res);
+        setLoggedInUser(res);
+        if (redicrect) {
+            history.replace(from);
+        }
+    }
 
     const handleBlur = (event) => {
         let isFieldValid;
@@ -68,13 +69,17 @@ const Login = () => {
         }
     }
     const handleSubmit = (e) => {
-        // console.log(user.email, user.password);
         if (newUser && user.email && user.password) {
-            
+            createUserWithEmailAndPassword(user.name, user.email, user.password)
+                .then(res => {
+                    handleResponse(res, true);
+            })
         }
         if (!newUser && user.email && user.password) {
-           
-
+            signInWithEmailAndPassword(user.email, user.password)
+                .then(res => {
+                    handleResponse(res, true);
+            })
         }
         e.preventDefault();
     }
