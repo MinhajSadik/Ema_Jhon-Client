@@ -2,15 +2,17 @@ import './App.css';
 import React from 'react'
 import Header from './Componenet/Header/Header';
 import Shop from './Componenet/Shop/Shop';
+import Review from './Componenet/Review/Review';
+import Inventory from './Componenet/Inventory/Inventory';
+import NotFound from './Componenet/NotFound/NotFound';
+import ProductDetail from './Componenet/ProductDetail/ProductDetail';
+
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
-import Review from './Componenet/Review/Review';
-import Inventory from './Componenet/Inventory/Inventory';
-import NotFound from './Componenet/NotFound/NotFound';
-import ProductDetail from './Componenet/ProductDetail/ProductDetail';
+
 function App() {
   return (
     <div>
