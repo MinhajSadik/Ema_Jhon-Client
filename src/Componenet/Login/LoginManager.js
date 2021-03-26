@@ -37,6 +37,7 @@ export const handleFbSignIn = () => {
             var user = result.user;
             var accessToken = credential.accessToken;
             user.success = true;
+            console.log(accessToken);
             return user;
         })
         .catch((error) => {
