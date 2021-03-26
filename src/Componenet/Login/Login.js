@@ -1,7 +1,8 @@
 import "firebase/auth";
 import firebase from "firebase/app";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import firebaseConfig from './firebase.config';
+import { UserContext } from "../../App";
 
 // firebase.initializeApp(firebaseConfig)
 if (!firebase.apps.length) {
@@ -19,6 +20,9 @@ const  Login = ()  =>{
         error: '',
         success: false
     })
+
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
     var googleProvider = new firebase.auth.GoogleAuthProvider();
     var fbProvider = new firebase.auth.FacebookAuthProvider();
     const handleSignIn = () => {
@@ -44,10 +48,10 @@ const  Login = ()  =>{
             .then(res => {
                 const SignOutUser = {
                     isSignedIn: false,
-                    name: '',
-                    photo: '',
-                    email: '',
-                    password: ''
+                    name: ' ',
+                    email: ' ',
+                    password: ' ',
+                    photo: ' '
                 }
                 setUser(SignOutUser)
             })

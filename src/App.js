@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react'
+import React, { createContext, useState } from 'react'
 import Header from './Componenet/Header/Header';
 import Shop from './Componenet/Shop/Shop';
 import Review from './Componenet/Review/Review';
@@ -8,17 +8,21 @@ import Login from './Componenet/Login/Login';
 import Shipment from './Componenet/Shipment/Shipment';
 import NotFound from './Componenet/NotFound/NotFound';
 import ProductDetail from './Componenet/ProductDetail/ProductDetail';
-
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
 
+export const UserContext = createContext()
+
 function App() {
-  return (
-    <div>
-    <Header></Header>
+  const [loggedInUser, setLoggedInUser] = useState({});
+
+  return (<UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+
+    <Header />
+    
       <Router>
         <Switch>
 
@@ -55,8 +59,8 @@ function App() {
   
       </Switch>
     </Router>
-  </div>
-  );
+
+  </UserContext.Provider>);
 }
 
 export default App;
