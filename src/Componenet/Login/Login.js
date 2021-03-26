@@ -108,8 +108,9 @@ const  Login = ()  =>{
                     newUserInfo.error = error.message;
                     newUserInfo.success = false;
                     setUser(newUserInfo)
+                    setLoggedInUser(newUserInfo);
                     console.log('sign in user info', user.res);
-                });
+                })
 
         }
         e.preventDefault();
