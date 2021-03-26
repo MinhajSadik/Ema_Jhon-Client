@@ -13,7 +13,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import PrivetRoute from './Componenet/PrivetRoute/PrivetRoute';
+import PrivateRoute from './Componenet/PrivateRoute/PrivateRoute';
 
 export const UserContext = createContext()
 
@@ -22,10 +22,11 @@ function App() {
 
   return (<UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
 
-    <h3> Login Email: { loggedInUser.email}</h3>
-    <Header />
+    <h3> Login Email: {loggedInUser.email}</h3>
     
-      <Router>
+    <Router>
+      <Header />
+      
         <Switch>
 
           <Route path="/shop">
@@ -36,16 +37,17 @@ function App() {
             <Review/>
           </Route>
 
-          <Route path="/inventory">
+          <PrivateRoute path="/inventory">
             <Inventory/>
-          </Route>
+          </PrivateRoute>
 
           <Route path="/login">
             <Login/>
-          </Route>
-          <PrivetRoute path="/shipment">
+        </Route>
+        
+          <PrivateRoute path="/shipment">
             <Shipment/>
-          </PrivetRoute>
+          </PrivateRoute>
 
           <Route exact path="/">
             <Shop/>
