@@ -13,6 +13,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import PrivetRoute from './Componenet/PrivetRoute/PrivetRoute';
 
 export const UserContext = createContext()
 
@@ -42,9 +43,9 @@ function App() {
           <Route path="/login">
             <Login/>
           </Route>
-          <Route path="/shipment">
+          <PrivetRoute path="/shipment">
             <Shipment/>
-          </Route>
+          </PrivetRoute>
 
           <Route exact path="/">
             <Shop/>
