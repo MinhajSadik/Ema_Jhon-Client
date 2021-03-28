@@ -5,11 +5,14 @@ import Cart from '../Cart/Cart';
 import Product from '../Product/Product.js';
 import { Link } from 'react-router-dom';
 import './Shop.css';
+import { LinearProgress } from '@material-ui/core';
 
 const Shop = () => {
     const first = fakeData.slice(0, 10);
     const [products] = useState(first)
     const [cart, setCart] = useState([]);
+
+    document.title = "Shop Page";
 
     useEffect(() =>{
         const savedCart = getDatabaseCart();
@@ -47,7 +50,10 @@ const Shop = () => {
             
             <div className="product-container">
                 {
-                    products.length === 0 && <h1>Loading...</h1>
+                    products.length === 0 && <div>
+                        <LinearProgress />
+                        <LinearProgress color="secondary" />
+                    </div>
                 }
                 {
                     products.map(pro =><Product 

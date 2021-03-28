@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 
 const Product = ({ product, handleAddProduct, showAddToCart}) => {
     // const {product, handleAddProduct, showAddToCart} = props;
-    const { img, name, seller, price, stock, key } = product; 
+    const { img, name, seller, price, stock, key } = product;
+    // document.title = "Product Here";
     return (
         <div className="product">
             <div>
