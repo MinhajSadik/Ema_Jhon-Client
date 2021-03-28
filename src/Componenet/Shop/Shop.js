@@ -47,6 +47,9 @@ const Shop = () => {
             
             <div className="product-container">
                 {
+                    products.length === 0 && <h1>Loading...</h1>
+                }
+                {
                     products.map(pro =><Product 
                         key={pro.key}
                         showAddToCart={true} 
