@@ -4,6 +4,7 @@ import { UserContext } from '../../App';
 import logo from '../../images/logo.png';
 import './Header.css';
 const Header = () => {
+    // eslint-disable-next-line no-unused-vars
     const [loggedInUser, setLoggedInUser] = useContext(UserContext)
     return (
         <div className="header">

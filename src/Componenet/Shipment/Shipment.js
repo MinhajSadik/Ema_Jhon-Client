@@ -5,6 +5,7 @@ import './Shipment.css';
 
 
 const Shipment = () => {
+    // eslint-disable-next-line no-unused-vars
     const [loggedInUser, setLoggedInUser] = useContext(UserContext)
     const { register, handleSubmit, watch, errors } = useForm();
     const onSubmit = data => console.log(data);

@@ -20,6 +20,7 @@ const Login = () => {
     })
     initializeLoginFramwork()
 
+    // eslint-disable-next-line no-unused-vars
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
