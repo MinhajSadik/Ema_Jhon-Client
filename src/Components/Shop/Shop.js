@@ -1,17 +1,11 @@
 import { LinearProgress } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import {
-  addToDatabaseCart,
-  getDatabaseCart,
-} from "../../utilities/databaseManager";
-import Cart from "../Cart/Cart";
+import { addToDatabaseCart } from "../../utilities/databaseManager";
 import Product from "../Product/Product.js";
 import "./Shop.css";
 
-const Shop = () => {
+const Shop = ({ cart, setCart }) => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
 
   document.title = "Shop Page";
 
@@ -19,18 +13,6 @@ const Shop = () => {
     fetch("http://localhost:3000/products")
       .then((res) => res.json())
       .then((results) => setProducts(results));
-  }, []);
-
-  useEffect(() => {
-    const savedCart = getDatabaseCart();
-    const productKeys = Object.keys(savedCart);
-    fetch("http://localhost:3000/productsByKeys", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(productKeys),
-    })
-      .then((res) => res.json())
-      .then((data) => setCart(data));
   }, []);
 
   const handleAddProduct = (product) => {
@@ -60,21 +42,14 @@ const Shop = () => {
             <LinearProgress color="secondary" />
           </div>
         )}
-        {products.map((pro) => (
+        {products.map((product) => (
           <Product
-            key={pro.key}
+            key={product.key}
             showAddToCart={true}
             handleAddProduct={handleAddProduct}
-            product={pro}
+            product={product}
           ></Product>
         ))}
-      </div>
-      <div className="cart-container">
-        <Cart cart={cart}>
-          <Link to="review">
-            <button className="main-button">Review Order</button>
-          </Link>
-        </Cart>
       </div>
     </div>
   );

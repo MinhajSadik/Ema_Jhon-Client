@@ -6,21 +6,22 @@ import "./Product.css";
 
 const Product = ({ product, handleAddProduct, showAddToCart }) => {
   // const {product, handleAddProduct, showAddToCart} = props;
-  const { img, name, seller, price, stock, key } = product;
-  // document.title = "Product Here";
+  const { img, name, seller, price, stock, key, category } = product;
+  document.title = "Product Here";
+  const sortname = name.slice(0, 15);
   return (
     <div className="product">
       <div>
         <img src={img} alt="" />
       </div>
       <div className="product-name">
-        <Link to={"/product/" + key}>{name}</Link>
+        <Link to={"/product/" + key}> Name: {sortname}</Link>
         <br />
         <p>
           <small>by: {seller}</small>
         </p>
-        <p>$ {price}</p>
-        <br />
+        <p>Price: ${price}</p>
+        <p>Category: {category}</p>
         <p>
           <small>Only: {stock} left in stock</small>
         </p>

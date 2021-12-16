@@ -10,25 +10,29 @@ const Inventory = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(product),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
   return (
     <div>
       <form action="">
         <p>
-          <span>Name:</span>
+          <span>Name: </span>
           <input type="text" />
         </p>
         <p>
-          <span>Price:</span>
+          <span>Price: </span>
           <input type="text" />
         </p>
         <p>
-          <span>Quentity:</span>
+          <span>Quentity: </span>
           <input type="text" />
         </p>
         <p>
-          <span>Upload Product</span>
+          <span>Upload Image: </span>
           <input type="file" />
         </p>
         <button onClick={handleAddProduct}>Add Product</button>

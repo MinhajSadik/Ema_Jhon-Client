@@ -91,20 +91,32 @@ const Login = () => {
 
   return (
     <div className="App">
+      <br />
+      <br />
+
       {user.isSignedIn ? (
-        <button onClick={signOut}>Sign Out</button>
+        <button className="signOut" onClick={signOut}>
+          Sign Out
+        </button>
       ) : (
-        <button onClick={googleSignIn}>Google Sign In</button>
+        <button className="google" onClick={googleSignIn}>
+          Google
+        </button>
       )}
       <br />
-      <button onClick={fbSignIn}>Facebook Sign In</button>
+      <br />
+      <button className="facebook" onClick={fbSignIn}>
+        Facebook
+      </button>
 
-      {user.isSignedIn && (
+      {user.isSignedIn ? (
         <div>
           <p>Welcome! {user.name}</p>
           <p>Your Email: {user.email}</p>
           <img src={user.photo} alt="" />
         </div>
+      ) : (
+        ""
       )}
 
       <h1>Our Own Authentication</h1>
@@ -115,10 +127,6 @@ const Login = () => {
         id=""
       />
       <label htmlFor="newUser">New User Sign Up</label>
-
-      {/* <p>Name: {user.name}</p>
-            <p>Email: {user.email}</p>
-            <p>Password: {user.password}</p> */}
 
       <form onSubmit={handleSubmit}>
         {newUser && (

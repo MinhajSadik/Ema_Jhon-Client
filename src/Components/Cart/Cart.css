@@ -1,13 +1,14 @@
-.btn{
-    background-color: lightgray; 
-    color: black;
-    text-align: center;
-    padding: 5px;
-    height: 30px;
-    width: 140px;
+.btn {
+  background-color: lightgray;
+  color: black;
+  text-align: center;
+  padding: 5px;
+  height: 30px;
+  width: 140px;
 }
-.cart-container{
-    height:300px;
-    width: 200px;
-    margin-left: 20px;
+.cart-container {
+  height: 300px;
+  width: 200px;
+  margin-left: 20px;
+  margin-top: -11px;
 }

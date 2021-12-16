@@ -1,6 +1,7 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import Cart from "./Components/Cart/Cart";
 import Header from "./Components/Header/Header";
 import Inventory from "./Components/Inventory/Inventory";
 import Login from "./Components/Login/Login";
@@ -10,20 +11,37 @@ import ProductDetail from "./Components/ProductDetail/ProductDetail";
 import Review from "./Components/Review/Review";
 import Shipment from "./Components/Shipment/Shipment";
 import Shop from "./Components/Shop/Shop";
+import { getDatabaseCart } from "./utilities/databaseManager";
 
 export const UserContext = createContext();
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
+  const [cart, setCart] = useState([]);
+  useEffect(() => {
+    const savedCart = getDatabaseCart();
+    const productKeys = Object.keys(savedCart);
+    fetch("http://localhost:3000/productsByKeys", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(productKeys),
+    })
+      .then((res) => res.json())
+      .then((data) => setCart(data));
+  }, []);
 
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <Router>
-        <Header />
+        <Header cart={cart} />
 
         <Switch>
           <Route path="/shop">
-            <Shop />
+            <Shop cart={cart} setCart={setCart} />
+          </Route>
+
+          <Route path="/cart">
+            <Cart cart={cart} setCart={setCart} />
           </Route>
 
           <Route path="/review">
