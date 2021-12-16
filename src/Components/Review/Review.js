@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import fakeData from "../../fakeData";
 import HappyImage from "../../images/giphy.gif";
 import {
   getDatabaseCart,
@@ -27,14 +26,15 @@ const Review = () => {
   useEffect(() => {
     // cart
     const savedCart = getDatabaseCart();
-    const productKey = Object.keys(savedCart);
+    const productKeys = Object.keys(savedCart);
 
-    const cartProducts = productKey.map((key) => {
-      const product = fakeData.find((pd) => pd.key === key);
-      product.quantity = savedCart[key];
-      return product;
-    });
-    setCart(cartProducts);
+    fetch("http://localhost:3000/productsByKeys", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(productKeys),
+    })
+      .then((res) => res.json())
+      .then((data) => setCart(data));
   }, []);
 
   let thankYou;
