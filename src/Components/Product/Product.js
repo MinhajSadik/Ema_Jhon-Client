@@ -5,17 +5,16 @@ import { Link } from "react-router-dom";
 import "./Product.css";
 
 const Product = ({ product, handleAddProduct, showAddToCart }) => {
-  // const {product, handleAddProduct, showAddToCart} = props;
   const { img, name, seller, price, stock, key, category } = product;
   document.title = "Product Here";
-  const sortname = name.slice(0, 15);
+  // const sortname = name.slice(0, 15);
   return (
     <div className="product">
       <div>
         <img src={img} alt="" />
       </div>
       <div className="product-name">
-        <Link to={"/product/" + key}> Name: {sortname}</Link>
+        <Link to={"/product/" + key}> Name: {name}</Link>
         <br />
         <p>
           <small>by: {seller}</small>

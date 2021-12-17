@@ -1,33 +1,40 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { UserContext } from "../../App";
+import {
+  getDatabaseCart,
+  removeFromDatabaseCart,
+} from "../../utilities/databaseManager";
 import "./Shipment.css";
-
 const Shipment = () => {
   // eslint-disable-next-line no-unused-vars
-  const userInfo = {
-    name: "",
-    email: "",
-    address: "",
-    phone: "",
-  };
-  const orderInfo = () => {
-    fetch("http://localhost:3000/orderInfo", {
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  const { register, handleSubmit, watch, errors } = useForm();
+  const savedCart = getDatabaseCart();
+  const onSubmit = (data) => {
+    const orderInfo = {
+      ...loggedInUser,
+      cartProducts: savedCart,
+      shipment: data,
+      orderTime: new Date(),
+    };
+    fetch("http://localhost:3000/addOrder", {
       method: "POST",
       headers: {
-        "Content-Type": "Application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify(orderInfo),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data) {
+          alert("Order placed successfully!");
+          removeFromDatabaseCart();
+        } else {
+          alert("Something went wrong!");
+        }
       });
   };
-
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-  const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
 
   console.log(watch("example")); // watch input value by passing the name of it
 
@@ -36,7 +43,7 @@ const Shipment = () => {
       {/* < input name = "example" defaultValue ={loggedInUser.name} ref = { register } /> */}
       <input
         name="name"
-        watch={watch("example")}
+        defaultValue={loggedInUser.name}
         ref={register({ required: true })}
         placeholder="What's Your Name"
       />
@@ -44,7 +51,7 @@ const Shipment = () => {
 
       <input
         name="email"
-        watch={watch("example")}
+        defaultValue={loggedInUser.email}
         ref={register({ required: true })}
         placeholder="Provide Your Email"
       />
@@ -52,7 +59,6 @@ const Shipment = () => {
 
       <input
         name="address"
-        watch={watch("example")}
         ref={register({ required: true })}
         placeholder="Fill-Up Your Address"
       />
@@ -60,13 +66,12 @@ const Shipment = () => {
 
       <input
         name="phone"
-        watch={watch("example")}
         ref={register({ required: true })}
         placeholder="GiveMe Your Name"
       />
       {errors.phone && <span className="error">Phone Number is required</span>}
 
-      <input type="submit" onClick={orderInfo} />
+      <input type="submit" />
     </form>
   );
 };

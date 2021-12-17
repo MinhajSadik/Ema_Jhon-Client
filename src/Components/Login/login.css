@@ -1,0 +1,28 @@
+.google::first-letter {
+  font-size: 250%;
+  /* margin-right: 0.1em; */
+  font-weight: bold;
+}
+.google {
+  color: #d30c0c;
+  font-weight: bold;
+  font-size: x-large;
+  width: 250px;
+  height: 90px;
+}
+.google:hover {
+  color: #6e61b6;
+  font-weight: bold;
+  font-size: x-large;
+  width: 250px;
+  height: 90px;
+  background-color: #ffffff;
+}
+
+.signOut {
+  color: #be7171;
+  font-weight: bold;
+  font-size: x-large;
+  width: 250px;
+  height: 90px;
+}

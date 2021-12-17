@@ -3,19 +3,21 @@ import "./ReviewItem.css";
 
 const ReviewItem = (props) => {
   const { name, quantity, img, key, price } = props.product;
-  // console.log(props);
   const ReviewItemStyle = {
-    marginBottom: "10px",
-    paddingBottom: "5px",
-    marginLeft: "100px",
-    // margin: '10px',
-    // padding: '10px'
+    marginBottom: "0px",
+    paddingBottom: "0px",
+    marginLeft: "5%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    width: "50%",
   };
   return (
     <div style={ReviewItemStyle}>
-      <img src={img} alt="" />
-      <div>
-        <h4 style={{ width: "350px", height: "100px" }}> {name} </h4>
+      <img src={img} alt={name} />
+      <div style={{ marginLeft: "30px" }}>
+        <h4> {name} </h4>
         <p>Quantity: {quantity}</p>
         <p>
           <small>${price}</small>
@@ -25,7 +27,7 @@ const ReviewItem = (props) => {
           onClick={() => props.removeProduct(key)}
           className="main-button"
         >
-          Remove
+          Remove Item
         </button>
       </div>
     </div>

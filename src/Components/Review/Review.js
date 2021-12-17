@@ -42,12 +42,12 @@ const Review = () => {
   }
 
   return (
-    <div className="twin-container">
-      <div className="product-container">
+    <div className="twin_container">
+      <div className="product_container">
         {cart.map((pd) => (
           <ReviewItem
             removeProduct={removeProduct}
-            pd={pd.key}
+            key={pd.key}
             product={pd}
           ></ReviewItem>
         ))}

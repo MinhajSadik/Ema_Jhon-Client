@@ -1,20 +1,22 @@
 .product {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  border-bottom: 1px solid lightblue;
-  margin-right: 10px;
-  margin: auto;
-  margin-left: 50px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 10);
+  margin-bottom: 10px;
+  width: 30%;
+  height: 250px;
+  margin-left: 2.4%;
+  margin-top: 15px;
 }
-.product-name {
+.product_name {
   color: blue;
-  font-weight: 300px;
-  margin-left: 10px;
+  /* font-weight: 300px; */
+  /* margin-left: 10px;
   margin-top: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 25px; */
 }
 .main-button {
   background-color: goldenrod;
@@ -24,3 +26,9 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+/* .product img {
+  width: auto;
+  height: auto;
+  border-radius: 5px;
+} */

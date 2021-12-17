@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import { UserContext } from "../../App";
+import "./login.css";
 import {
   createUserWithEmailAndPassword,
   handleFbSignIn,
@@ -94,32 +95,31 @@ const Login = () => {
       <br />
       <br />
 
-      {user.isSignedIn ? (
+      {loggedInUser.isSignedIn ? (
         <button className="signOut" onClick={signOut}>
           Sign Out
         </button>
       ) : (
         <button className="google" onClick={googleSignIn}>
-          Google
+          GOOGLE
         </button>
       )}
       <br />
       <br />
-      <button className="facebook" onClick={fbSignIn}>
-        Facebook
-      </button>
 
-      {user.isSignedIn ? (
+      {loggedInUser ? (
         <div>
-          <p>Welcome! {user.name}</p>
-          <p>Your Email: {user.email}</p>
-          <img src={user.photo} alt="" />
+          <p>{loggedInUser.name}</p>
+          <p>{loggedInUser.email}</p>
+          <img src={loggedInUser.photo} alt="" />
         </div>
       ) : (
-        ""
+        <div>
+          <h1>Please Login</h1>
+        </div>
       )}
 
-      <h1>Our Own Authentication</h1>
+      <h1>Manual Authentication</h1>
       <input
         type="checkbox"
         onChange={() => setNewUser(!newUser)}
