@@ -4,7 +4,6 @@ import { UserContext } from "../../App";
 import "./login.css";
 import {
   createUserWithEmailAndPassword,
-  handleFbSignIn,
   handleGoogleSignIn,
   handleSignOut,
   initializeLoginFramwork,
@@ -39,11 +38,11 @@ const Login = () => {
       handleResponse(res, true);
     });
   };
-  const fbSignIn = () => {
-    handleFbSignIn().then((res) => {
-      handleResponse(res, true);
-    });
-  };
+  // const fbSignIn = () => {
+  //   handleFbSignIn().then((res) => {
+  //     handleResponse(res, true);
+  //   });
+  // };
   const signOut = () => {
     handleSignOut().then((res) => {
       handleResponse(res, false);
