@@ -4,7 +4,7 @@ const Inventory = () => {
   //addProduct endpoint
   const product = {};
   const handleAddProduct = () => {
-    fetch("http://localhost:3000/addProduct", {
+    fetch("https://ema-john-client.herokuapp.com/addProduct", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

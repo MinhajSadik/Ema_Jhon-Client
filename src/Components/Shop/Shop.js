@@ -10,7 +10,7 @@ const Shop = ({ cart, setCart }) => {
   document.title = "Shop Page";
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch("https://ema-john-client.herokuapp.com/products")
       .then((res) => res.json())
       .then((results) => setProducts(results));
   }, []);

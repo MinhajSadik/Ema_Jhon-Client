@@ -11,7 +11,7 @@ const Header = ({ cart }) => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const [user, setUser] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/user/")
+    fetch("https://ema-john-client.herokuapp.com/user")
       .then((res) => res.json())
       .then((data) => setUser(data));
   }, []);
@@ -25,7 +25,7 @@ const Header = ({ cart }) => {
         <Link to="/inventory">Manage Inventory</Link>
         <Link to="/cart">
           <FontAwesomeIcon icon={faShoppingCart} />
-          <b>{cart.length ? cart.length : ""}</b>
+          <b>{cart.length ? cart.length : 0}</b>
         </Link>
         <Link to="/login">
           <button style={{ backgroundColor: "goldenrod" }}>

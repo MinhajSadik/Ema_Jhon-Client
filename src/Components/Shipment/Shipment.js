@@ -1,10 +1,7 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { UserContext } from "../../App";
-import {
-  getDatabaseCart,
-  removeFromDatabaseCart,
-} from "../../utilities/databaseManager";
+import { getDatabaseCart, processOrder } from "../../utilities/databaseManager";
 import "./Shipment.css";
 const Shipment = () => {
   // eslint-disable-next-line no-unused-vars
@@ -18,7 +15,7 @@ const Shipment = () => {
       shipment: data,
       orderTime: new Date(),
     };
-    fetch("http://localhost:3000/addOrder", {
+    fetch("https://ema-john-client.herokuapp.com/addOrder", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,7 +26,7 @@ const Shipment = () => {
       .then((data) => {
         if (data) {
           alert("Order placed successfully!");
-          removeFromDatabaseCart();
+          processOrder(savedCart);
         } else {
           alert("Something went wrong!");
         }
