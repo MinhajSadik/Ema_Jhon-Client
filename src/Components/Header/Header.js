@@ -28,7 +28,7 @@ const Header = ({ cart }) => {
           <b>{cart.length ? cart.length : 0}</b>
         </Link>
         <Link to="/login">
-          <button style={{ backgroundColor: "goldenrod" }}>
+          <button style={{ backgroundColor: "green" }}>
             <span>
               {loggedInUser ? loggedInUser.name || "LOGIN/SIGNIN" : "Login"}
             </span>
